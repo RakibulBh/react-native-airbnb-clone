@@ -13,7 +13,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "blue",
+        tabBarActiveTintColor: "red",
         headerShown: false,
         tabBarStyle: Platform.select({
           ios: {
@@ -27,35 +27,35 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Home",
-          tabBarIcon: () => <Camera color="red" size={18} />,
+          tabBarIcon: () => <Camera color="red" size={24} />,
         }}
       />
       <Tabs.Screen
         name="wishlist"
         options={{
           title: "Wishlist",
-          tabBarIcon: () => <Heart color="red" size={18} />,
+          tabBarIcon: () => <Heart color="red" size={24} />,
         }}
       />
       <Tabs.Screen
         name="trips"
         options={{
           title: "Trips",
-          tabBarIcon: () => <Merge color="red" size={18} />,
+          tabBarIcon: () => <Merge color="red" size={24} />,
         }}
       />
       <Tabs.Screen
         name="messages"
         options={{
           title: "Messages",
-          tabBarIcon: () => <MessageSquare color="red" size={18} />,
+          tabBarIcon: () => <MessageSquare color="red" size={24} />,
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: "Profile",
-          tabBarIcon: () => <CircleUser color="red" size={18} />,
+          tabBarIcon: () => <CircleUser color="red" size={24} />,
         }}
       />
     </Tabs>
