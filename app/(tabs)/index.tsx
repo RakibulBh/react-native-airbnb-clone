@@ -5,9 +5,18 @@ import TopNavigation from "@/components/top-nav";
 import { AirBnbs, Categories } from "@/constants";
 import { useState } from "react";
 import { FlatList, Image, Text, View } from "react-native";
+import React, { useCallback, useMemo, useRef } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 
 export default function HomeScreen() {
   const [currentScreen, setCurrentScreen] = useState<string>("cabins");
+  const bottomSheetRef = useRef<BottomSheet>(null);
+
+  // callbacks
+  const handleSheetChanges = useCallback((index: number) => {
+    console.log("handleSheetChanges", index);
+  }, []);
 
   return (
     <View className="h-screen mt-12">
@@ -27,17 +36,23 @@ export default function HomeScreen() {
           keyExtractor={(item) => item.label}
         />
       </View>
-      <View className="p-5">
-        <FlatList
-          ListHeaderComponent={<DisplayTotalPriceFIlter />}
-          ListHeaderComponentClassName="mb-5"
-          data={AirBnbs}
-          renderItem={({ item }) => <AirBnbComponent item={item} />}
-          ItemSeparatorComponent={() => <View className="h-12" />}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.host}
-        />
-      </View>
+      <GestureHandlerRootView className="bg-blue-100">
+        <BottomSheet ref={bottomSheetRef} onChange={handleSheetChanges}>
+          <BottomSheetView className="rounded-xl">
+            <View className="p-5">
+              <FlatList
+                ListHeaderComponent={<DisplayTotalPriceFIlter />}
+                ListHeaderComponentClassName="mb-5"
+                data={AirBnbs}
+                renderItem={({ item }) => <AirBnbComponent item={item} />}
+                ItemSeparatorComponent={() => <View className="h-12" />}
+                showsVerticalScrollIndicator={false}
+                keyExtractor={(item) => item.host}
+              />
+            </View>
+          </BottomSheetView>
+        </BottomSheet>
+      </GestureHandlerRootView>
     </View>
   );
 }
