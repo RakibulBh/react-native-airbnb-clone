@@ -6,9 +6,9 @@ function DisplayTotalPriceFIlter() {
   const [on, setOn] = useState<boolean>(false);
 
   return (
-    <View className="rounded-xl border-2 border-gray-300 p-3 flex-row justify-between items-center">
-      <View className="gap-2">
-        <Text className="font-semibold text-black text-2xl">
+    <View className="rounded-xl border border-gray-300 p-3 flex-row justify-between items-center">
+      <View className="">
+        <Text className="font-semibold text-black text-xl">
           Display total price
         </Text>
         <Text className="text-gray-400 text-xl">
