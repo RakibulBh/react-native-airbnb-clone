@@ -1,24 +1,14 @@
+import AirBnbComponent from "@/components/airbnb-component";
+import CategoryIcon from "@/components/category-icon";
 import DisplayTotalPriceFIlter from "@/components/display-total-price-filter";
 import TopNavigation from "@/components/top-nav";
-import { Categories } from "@/constants";
-import { Category } from "@/types";
-import { HotelIcon } from "lucide-react-native";
-import { FlatList, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-
-const CategoryIcon = ({ item: { label } }: { item: Category }) => {
-  return (
-    <View className="px-6 flex self-end gap-3">
-      <View className="flex gap-[2px] items-center">
-        <HotelIcon color="black" size={26} />
-        <Text className="text-sm font-semibold">{label}</Text>
-      </View>
-      <View className="h-[3px] w-full bg-black rounded-full" />
-    </View>
-  );
-};
+import { AirBnbs, Categories } from "@/constants";
+import { useState } from "react";
+import { FlatList, Image, Text, View } from "react-native";
 
 export default function HomeScreen() {
+  const [currentScreen, setCurrentScreen] = useState<string>("cabins");
+
   return (
     <View className="h-screen mt-12">
       <View className="h-42 flex justify-between blur-sm border-b border-gray-200">
@@ -26,13 +16,27 @@ export default function HomeScreen() {
         <FlatList
           data={Categories}
           horizontal
-          renderItem={({ item }) => <CategoryIcon item={item} />}
+          renderItem={({ item }) => (
+            <CategoryIcon
+              setCurrentScreen={setCurrentScreen}
+              currentScreen={currentScreen}
+              item={item}
+            />
+          )}
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item) => item.label}
         />
       </View>
       <View className="p-5">
-        <DisplayTotalPriceFIlter />
+        <FlatList
+          ListHeaderComponent={<DisplayTotalPriceFIlter />}
+          ListHeaderComponentClassName="mb-5"
+          data={AirBnbs}
+          renderItem={({ item }) => <AirBnbComponent item={item} />}
+          ItemSeparatorComponent={() => <View className="h-12" />}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item) => item.host}
+        />
       </View>
     </View>
   );
