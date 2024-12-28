@@ -4,12 +4,20 @@ import DisplayTotalPriceFIlter from "@/components/display-total-price-filter";
 import TopNavigation from "@/components/top-nav";
 import { AirBnbs, Categories } from "@/constants";
 import { useState } from "react";
-import { FlatList, Image, Text, TouchableHighlight, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  Text,
+  TouchableHighlight,
+  View,
+  StyleSheet,
+} from "react-native";
 import { useCallback, useMemo, useRef } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { Map } from "lucide-react-native";
 import { Airbnb, Category } from "@/types";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 export default function HomeScreen() {
   const [currentScreen, setCurrentScreen] = useState<string>("cabins");
@@ -69,8 +77,8 @@ export default function HomeScreen() {
           maxToRenderPerBatch={5}
         />
       </View>
-
       <GestureHandlerRootView className="bg-blue-100">
+        {/* <MapView provider={PROVIDER_GOOGLE} className="w-full h-full" /> */}
         <BottomSheet
           style={{
             borderRadius: 60,

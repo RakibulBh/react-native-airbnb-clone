@@ -10,7 +10,10 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.airbnbclone"
+      "bundleIdentifier": "com.anonymous.airbnbclone",
+      "config": {
+        "googleMapsApiKey": "AIzaSyBGwgQaJGIMb1sjtr0uQ4KJ90bXI4U2qe4"
+      }
     },
     "android": {
       "adaptiveIcon": {
